@@ -1,24 +1,26 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { useState } from 'react';
 import './App.css';
+import List from './Components/List'
+import AddToList from './Components/AddToList';
 
-function App() {
+export interface Person {
+  people: {
+    name: string
+    age: number
+    imageUrl: string
+    isVaccinated: string
+    note?: string
+  }[]
+}
+
+const App = () => {
+  const [people, setPeople] = useState<Person["people"]>([])
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>Party Invitation List</h1>
+      <List people={people}/>
+      <AddToList people={people} setPeople={setPeople}/>
     </div>
   );
 }
